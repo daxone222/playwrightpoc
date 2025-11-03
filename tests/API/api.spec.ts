@@ -13,3 +13,7 @@ test('Get Postcode Success @getPostcodeSuccess', async ({ request }) => {
   expect(responseBody.result.postcode).toBe('M11 3FF')
   expect(responseBody.result.country).toBe('England')
 })
+
+test.afterEach(async () => {
+  console.log(`Finished ${test.info().title} with status ${test.info().status}`)
+})
