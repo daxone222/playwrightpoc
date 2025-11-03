@@ -1,3 +1,4 @@
+
 # Playwright Automation Framework
 
 A comprehensive Playwright and TypeScript test automation framework implementing Page Object Model (POM) design pattern for reliable and maintainable end-to-end testing.
@@ -30,20 +31,16 @@ A comprehensive Playwright and TypeScript test automation framework implementing
 
 ### Setup
 
-1. Clone the repository
-```bash
-git clone https://github.com/daxone222/playwrightpoc.git
+1. git clone https://github.com/daxone222/playwrightpoc.git
 cd playwrightpoc
-Install dependencies
-
-bash
+2. Install dependencies
 npm install
-Install Playwright browsers
-
-bash
+3. Install Playwright browsers
 npx playwright install
-Project Structure
-text
+npm install -D @playwright/test
+
+## Project Structure
+
 playwrightpoc/
 ├── tests/
 │   ├── ui/                 # UI tests 
@@ -53,49 +50,58 @@ playwrightpoc/
 ├── test-data/              # Test data and generators
 ├── playwright-report/      # Test reports
 └── playwright.config.ts    # Playwright configuration
-Usage
+
+## Usage
+
 This framework uses the Page Object Model pattern to create maintainable and reusable test code. Each page is represented as a class with methods for interactions and assertions.
 
-Running Tests
+## Running Tests
+
 Run all tests
-bash
-npx playwright test
+- npx playwright test
 Run specific test file
-bash
-npx playwright test tests/login/login.spec.ts
+- npx playwright test tests/login/login.spec.ts
 Run tests with specific reporter
-bash
-npx playwright test --reporter=dot
-npx playwright test --reporter=html
+- npx playwright test --reporter=dot
+- npx playwright test --reporter=html
 Run in headed mode
-bash
-npx playwright test --headed
+- npx playwright test --headed
 Run tests in UI mode
-bash
-npx playwright test --ui
-Test Data Management
+- npx playwright test --ui
+Run using the scripts mentioned in one of the section mentioned below 
+
+## Test Data Management
+
 The framework uses both static and dynamic test data generation:
 
 Static Test Data: Pre-defined test scenarios and user data
 
 Dynamic Test Data with Faker: Randomized data generation for comprehensive test coverage
 
-Scripts
-Command	Description
-npm test	Run all tests
-npm run test:login	Run UI login tests
-npm run test:order	Run UI order tests
-npm run test:api	Run API tests
-npm run test:visual	Run visual comparison tests
-Configuration
+
+## Scripts
+
+Run all tests
+- npm test
+Run UI login tests
+- npm run test:login	
+Run UI order tests
+- npm run test:order	
+Run API tests
+- npm run test:api	
+Run visual comparison tests
+- npm run test:visual	
+
+## Configuration
+
 Key configuration in playwright.config.ts:
 
-Browsers: Chromium, Firefox, WebKit
+- Browsers: Chromium, Firefox, WebKit
 
-Reporting: HTML, JSON, JUnit reporters
+- Reporting: HTML, JSON, JUnit reporters
 
-Timeouts: Customizable test and action timeouts
+- Timeouts: Customizable test and action timeouts
 
-Screenshots: Configured for failure capture
+- Screenshots: Configured for failure capture
 
-Video: Record on failure option
+- Video: Record on failure option
