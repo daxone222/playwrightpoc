@@ -25,7 +25,7 @@ export class ProductPage extends BasePage {
   async verifyProductPageDetails(
     productName: string,
     productDescription: string,
-    productPrice: string,
+    productPrice: number,
   ): Promise<void> {
     //check that product image has loaded for the correct product
     const imageLocator = this.page.locator(
@@ -40,7 +40,7 @@ export class ProductPage extends BasePage {
     //check exact product name, description and price is the expected one
     await expect(this.productName).toHaveText(productName)
     await expect(this.productDescription).toHaveText(productDescription)
-    await expect(this.productPrice).toHaveText(productPrice)
+    await expect(this.productPrice).toHaveText('$' + productPrice.toString())
     await expect(this.addToCart).toBeVisible()
   }
 
@@ -48,13 +48,10 @@ export class ProductPage extends BasePage {
     await this.addToCart.click()
   }
 
-  async verifyProductAddedToCart(): Promise<void> {
+  async verifyRemoveButton(): Promise<void> {
     //check add to cart button changed to remove
     await expect(this.removeFromCart).toBeVisible()
     expect(await this.removeFromCart.isEnabled()).toBe(true)
-    //check that shopping cart badge appeared having 1 item
-    await this.shoppingBadge.isVisible()
-    expect(this.shoppingBadge).toHaveText('1')
   }
 
   async goToShoppingCart(): Promise<void> {

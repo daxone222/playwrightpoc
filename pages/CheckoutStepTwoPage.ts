@@ -55,7 +55,7 @@ export class CheckoutStepTwoPage extends BasePage {
     expectedItems: Array<{
       name: string
       quantity?: number
-      price?: string
+      price?: number
       description?: string
     }>,
   ): Promise<void> {
@@ -70,7 +70,7 @@ export class CheckoutStepTwoPage extends BasePage {
   async verifyCheckoutItem(expectedItem: {
     name: string
     quantity?: number
-    price?: string
+    price?: number
     description?: string
   }): Promise<void> {
     const itemLocator = this.getCartItemByName(expectedItem.name)
@@ -81,7 +81,9 @@ export class CheckoutStepTwoPage extends BasePage {
       )
     }
     if (expectedItem.price !== undefined) {
-      await expect(this.getItemPriceLocator(expectedItem.name)).toHaveText(expectedItem.price)
+      await expect(this.getItemPriceLocator(expectedItem.name)).toHaveText(
+        '$' + expectedItem.price.toString(),
+      )
     }
     if (expectedItem.description !== undefined) {
       await expect(this.getItemDescriptionLocator(expectedItem.name)).toHaveText(
@@ -128,9 +130,9 @@ export class CheckoutStepTwoPage extends BasePage {
     await expect(this.shippingInfoValue).toHaveText('Free Pony Express Delivery!')
   }
 
-  async verifyPriceSection(subTotal: string, tax: string, total: string): Promise<void> {
-    await expect(this.subtotalLabel).toHaveText(`Item total: ${subTotal}`)
-    await expect(this.taxLabel).toHaveText(`Tax: ${tax}`)
-    await expect(this.totalLabel).toHaveText(`Total: ${total}`)
+  async verifyPriceSection(subTotal: number, tax: number, total: number): Promise<void> {
+    await expect(this.subtotalLabel).toHaveText(`Item total: $${subTotal}`)
+    await expect(this.taxLabel).toHaveText(`Tax: $${tax.toFixed(2)}`)
+    await expect(this.totalLabel).toHaveText(`Total: $${total}`)
   }
 }

@@ -9,6 +9,7 @@ export class CartPage {
   readonly descriptionLabel: Locator
   readonly cartItems: Locator
   readonly checkoutButton: Locator
+  readonly continueShopping: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -17,9 +18,10 @@ export class CartPage {
     this.descriptionLabel = page.locator('[data-test="cart-desc-label"]')
     this.cartItems = page.locator('[data-test="inventory-item"]')
     this.checkoutButton = page.locator('[data-test="checkout"]')
+    this.continueShopping = page.locator('[data-test="continue-shopping"]')
   }
 
-  async verifyCartPageLoaded(): Promise<void> {
+  async verifyPageLoaded(): Promise<void> {
     await expect(this.page).toHaveURL(/.*cart\.html/)
     await expect(this.cartList).toBeVisible()
     await expect(this.quantityLabel).toHaveText('QTY')
@@ -62,7 +64,7 @@ export class CartPage {
     expectedItems: Array<{
       name: string
       quantity?: number
-      price?: string
+      price?: number
       description?: string
     }>,
   ): Promise<void> {
@@ -77,7 +79,7 @@ export class CartPage {
   async verifyCartItem(expectedItem: {
     name: string
     quantity?: number
-    price?: string
+    price?: number
     description?: string
   }): Promise<void> {
     const itemLocator = this.getCartItemByName(expectedItem.name)
@@ -88,7 +90,9 @@ export class CartPage {
       )
     }
     if (expectedItem.price !== undefined) {
-      await expect(this.getItemPriceLocator(expectedItem.name)).toHaveText(expectedItem.price)
+      await expect(this.getItemPriceLocator(expectedItem.name)).toHaveText(
+        '$' + expectedItem.price.toString(),
+      )
     }
     if (expectedItem.description !== undefined) {
       await expect(this.getItemDescriptionLocator(expectedItem.name)).toHaveText(
@@ -112,5 +116,13 @@ export class CartPage {
 
   async clickCheckout(): Promise<void> {
     await this.checkoutButton.click()
+  }
+
+  async clickContinueShopping(): Promise<void> {
+    await this.continueShopping.click()
+  }
+
+  async checkItemCount(items: number): Promise<void> {
+    expect(await this.cartItems.count()).toBe(items)
   }
 }

@@ -45,4 +45,25 @@ export class CheckoutStepOnePage extends BasePage {
   async clickContinue(): Promise<void> {
     await this.continueButton.click()
   }
+
+  async clickCancel(): Promise<void> {
+    await this.cancelButton.click()
+  }
+
+  async verifyErrorMessage(expectedError: string): Promise<void> {
+    await expect(this.errorMessageContainer).toBeVisible()
+    await expect(this.errorMessageContainer).toHaveText(expectedError)
+  }
+
+  async fillFirstName(firstName: string): Promise<void> {
+    await this.firstNameInput.fill(firstName)
+  }
+
+  async fillLastName(lastName: string): Promise<void> {
+    await this.lastNameInput.fill(lastName)
+  }
+
+  async fillPostCode(postCode: string): Promise<void> {
+    await this.postalCodeInput.fill(postCode)
+  }
 }

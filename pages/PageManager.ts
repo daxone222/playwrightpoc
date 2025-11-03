@@ -6,6 +6,7 @@ import { CartPage } from './CartPage'
 import { CheckoutStepOnePage } from './CheckoutStepOnePage'
 import { CheckoutStepTwoPage } from './CheckoutStepTwoPage'
 import { CheckoutCompletePage } from './CheckoutCompletePage'
+import { MenuPage } from './MenuPage'
 
 export class PageManager {
   readonly page: Page
@@ -16,6 +17,7 @@ export class PageManager {
   readonly checkoutStepOnePage: CheckoutStepOnePage
   readonly checkoutStepTwoPage: CheckoutStepTwoPage
   readonly checkoutCompletePage: CheckoutCompletePage
+  readonly menuPage: MenuPage
 
   constructor(page: Page) {
     this.page = page
@@ -26,5 +28,6 @@ export class PageManager {
     this.checkoutStepOnePage = new CheckoutStepOnePage(page)
     this.checkoutStepTwoPage = new CheckoutStepTwoPage(page)
     this.checkoutCompletePage = new CheckoutCompletePage(page)
+    this.menuPage = new MenuPage(page)
   }
 }

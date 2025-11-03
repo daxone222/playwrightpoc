@@ -37,4 +37,25 @@ export class InventoryPage extends BasePage {
     })
     expect(isLoaded).toBe(true)
   }
+
+  async addProductToCart(productName: string): Promise<void> {
+    const productSlug = productName.toLowerCase().replace(/\s+/g, '-')
+    const addToCartButton = this.page.locator(`[data-test="add-to-cart-${productSlug}"]`)
+
+    await expect(addToCartButton).toBeVisible()
+    await expect(addToCartButton).toBeEnabled()
+    await addToCartButton.click()
+  }
+
+  async verifyRemoveButtonFor(productName: string): Promise<void> {
+    const productSlug = productName.toLowerCase().replace(/\s+/g, '-')
+    const removeButton = this.page.locator(`[data-test="remove-${productSlug}"]`)
+    await expect(removeButton).toBeVisible()
+  }
+
+  async removeProduct(productName: string): Promise<void> {
+    const productSlug = productName.toLowerCase().replace(/\s+/g, '-')
+    const removeButton = this.page.locator(`[data-test="remove-${productSlug}"]`)
+    await removeButton.click()
+  }
 }

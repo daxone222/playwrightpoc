@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:login": "playwright test tests/e2e/login/LoginTests.spec.ts --reporter=dot"
+    "test:login": "playwright test tests/UI/login/LoginTests.spec.ts --reporter=dot",
+    "test:order": "playwright test tests/UI/order/OrderTests.spec.ts --reporter=dot"
   },
   "keywords": [],
   "author": "",
