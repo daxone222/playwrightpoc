@@ -41,15 +41,9 @@ npm install -D @playwright/test
 
 ## Project Structure
 
-playwrightpoc/
-├── tests/
-│   ├── ui/                 # UI tests 
-│   ├── api/                # API tests  
-│   └── visual/             # Visual comparison tests
-├── pages/                  # Page Object Model classes
-├── test-data/              # Test data and generators
-├── playwright-report/      # Test reports
-└── playwright.config.ts    # Playwright configuration
+- pages -> contains the mapping of the application pages
+- test-data -> contains test data used in tests
+- tests -> contains API, UI and visual test folders with the specs 
 
 ## Usage
 
@@ -59,15 +53,20 @@ This framework uses the Page Object Model pattern to create maintainable and reu
 
 Run all tests
 - npx playwright test
+
 Run specific test file
 - npx playwright test tests/login/login.spec.ts
+
 Run tests with specific reporter
 - npx playwright test --reporter=dot
 - npx playwright test --reporter=html
+
 Run in headed mode
 - npx playwright test --headed
+
 Run tests in UI mode
 - npx playwright test --ui
+
 Run using the scripts mentioned in one of the section mentioned below 
 
 ## Test Data Management
