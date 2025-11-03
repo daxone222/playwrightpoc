@@ -33,10 +33,15 @@ A comprehensive Playwright and TypeScript test automation framework implementing
 
 1. git clone https://github.com/daxone222/playwrightpoc.git
 cd playwrightpoc
+
 2. Install dependencies
+
 npm install
+
 3. Install Playwright browsers
+
 npx playwright install
+
 npm install -D @playwright/test
 
 ## Project Structure
@@ -82,12 +87,16 @@ Dynamic Test Data with Faker: Randomized data generation for comprehensive test 
 
 Run all tests
 - npm test
+
 Run UI login tests
-- npm run test:login	
+- npm run test:login
+
 Run UI order tests
-- npm run test:order	
+- npm run test:order
+
 Run API tests
-- npm run test:api	
+- npm run test:api
+	
 Run visual comparison tests
 - npm run test:visual	
 
